@@ -9,6 +9,9 @@
     using Dto;
     using Domain.Repository;
     using Domain.Entity;
+    using Web.Site.Api.Common.Domain.Specification;
+    using Web.Site.Product.Infrastructure.Specification;
+
     public class ProductApplicationService : IProductApplicationService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -78,6 +81,17 @@
 
             return notification;
 
+        }
+
+        public List<ProductOutputDto> GetExpensives()
+        {
+            Specification<Product> specification = Specification<Product>.All;
+
+              specification = specification.And(new ProductWithExpensivePriceSpecification());
+
+            var entities = _productCreateAssembler.FromEntityList(_productRepository.GetFilteredList(specification).ToList());
+
+            return entities;
         }
     }
 }

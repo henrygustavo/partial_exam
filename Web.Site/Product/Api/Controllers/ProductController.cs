@@ -38,5 +38,12 @@
             _productApplicationService.Create(model);
             return Ok("Product Created!");
         }
+
+        [HttpGet("expensives")]
+        [ProducesResponseType(typeof(List<ProductOutputDto>), (int)HttpStatusCode.OK)]
+        public IActionResult GetExpensives()
+        {
+            return Ok(_productApplicationService.GetExpensives());
+        }
     }
 }

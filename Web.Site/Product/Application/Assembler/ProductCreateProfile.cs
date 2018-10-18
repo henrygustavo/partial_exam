@@ -25,6 +25,20 @@
                     )
                 )
                 .ReverseMap();
+
+            CreateMap<Product, ProductOutputDto>()
+            .ForMember(
+                dest => dest.Balance,
+                opts => opts.MapFrom(
+                    src => src.Balance.Amount
+                )
+            )
+            .ForMember(
+                dest => dest.Currency,
+                opts => opts.MapFrom(
+                    src => src.Balance.Currency.ToString()
+                )
+            );
         }
     }
 }

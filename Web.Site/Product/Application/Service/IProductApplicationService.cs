@@ -7,6 +7,7 @@
     {
         ProductOutputDto Get(int id);
         List<ProductOutputDto> GetAll();
+        List<ProductOutputDto> GetExpensives();
         void Create(ProductCreateDto productCreateDto);
 
     }
