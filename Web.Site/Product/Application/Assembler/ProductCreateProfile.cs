@@ -15,7 +15,10 @@
                         src => new Money(src.Balance, src.Currency)
                     )
                 )
-               .ReverseMap();
+                 .ForMember(
+                    dest => dest.Category,
+                      opts => opts.MapFrom(src => new Category { Id = src.CategoryId })
+                    );
 
             CreateMap<ProductOutputDto, Product>()
                 .ForMember(

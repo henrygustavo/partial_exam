@@ -28,7 +28,7 @@
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
                     .AddMySql5()
-                    .WithGlobalConnectionString(Environment.GetEnvironmentVariable("MYSQL_STRING_LOCAL"))
+                    .WithGlobalConnectionString(Environment.GetEnvironmentVariable("MYSQL_CONECTION_STRING_LOCAL"))
                     .ScanIn(typeof(IniTable).Assembly)
                     .For.All()
                 )

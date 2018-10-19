@@ -41,7 +41,7 @@
             return entities;
         }
 
-        public void Create(ProductCreateDto model)
+        public long Create(ProductCreateDto model)
         {
             Notification notification =  ValidateModel(model);
 
@@ -57,8 +57,9 @@
                 Product product = _productCreateAssembler.ToEntity(model);
                 _productRepository.Create(product);
                 _unitOfWork.Commit(status);
+                return product.Id;
             }
-            catch
+            catch(Exception ex)
             {
                 _unitOfWork.Rollback(status);
 

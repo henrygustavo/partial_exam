@@ -11,7 +11,6 @@
     public class ProductController : Controller
     {
         private readonly IProductApplicationService _productApplicationService;
-
         public ProductController(IProductApplicationService productApplicationService)
         {
             _productApplicationService = productApplicationService;
@@ -35,7 +34,8 @@
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public IActionResult Create([FromBody] ProductCreateDto model)
         {
-            _productApplicationService.Create(model);
+            long productId = _productApplicationService.Create(model);
+           
             return Ok("Product Created!");
         }
 
