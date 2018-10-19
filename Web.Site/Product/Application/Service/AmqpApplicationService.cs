@@ -9,7 +9,7 @@
     {
 
         private readonly ConnectionFactory _connectionFactory;
-        private const string QueueName = "EventsQueue";
+        private const string QueueName = "events";
 
         public AmqpApplicationService(string url)
         {
@@ -27,7 +27,7 @@
                 {
                     channel.QueueDeclare(
                         queue: QueueName,
-                        durable: false,
+                        durable: true,
                         exclusive: false,
                         autoDelete: false,
                         arguments: null
