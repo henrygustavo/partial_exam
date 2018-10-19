@@ -11,9 +11,12 @@
     public class ProductController : Controller
     {
         private readonly IProductApplicationService _productApplicationService;
-        public ProductController(IProductApplicationService productApplicationService)
+        private readonly IAmqpApplicationService _amqpApplicationService;
+        public ProductController(IProductApplicationService productApplicationService,
+            IAmqpApplicationService amqpApplicationService)
         {
             _productApplicationService = productApplicationService;
+            _amqpApplicationService = amqpApplicationService;
         }
 
         [HttpGet("{id}")]
@@ -35,7 +38,7 @@
         public IActionResult Create([FromBody] ProductCreateDto model)
         {
             long productId = _productApplicationService.Create(model);
-           
+            _amqpApplicationService.PublishMessage(productId);
             return Ok("Product Created!");
         }
 

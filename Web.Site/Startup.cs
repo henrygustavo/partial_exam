@@ -5,19 +5,19 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Web.Site.Common.Api.Middleware;
+    using Common.Api.Middleware;
     using Common.Infrastructure.Persistence;
-    using Web.Site.Common.Infrastructure.Persistence.NHibernate;
+    using Common.Infrastructure.Persistence.NHibernate;
     using Swashbuckle.AspNetCore.Swagger;
     using System;
-    using Web.Site.Product.Domain.Repository;
-    using Web.Site.Product.Infrastructure.Persistence.NHibernate.Repository;
-    using Web.Site.Product.Application.Service;
-    using Web.Site.Product.Application.Assembler;
-    using Web.Site.Template.Application.Assembler;
-    using Web.Site.Template.Domain.Repository;
-    using Web.Site.Template.Infrastructure.Persistence.NHibernate.Repository;
-    using Web.Site.Template.Application.Service;
+    using Product.Domain.Repository;
+    using Product.Infrastructure.Persistence.NHibernate.Repository;
+    using Product.Application.Service;
+    using Product.Application.Assembler;
+    using Template.Application.Assembler;
+    using Template.Domain.Repository;
+    using Template.Infrastructure.Persistence.NHibernate.Repository;
+    using Template.Application.Service;
 
     public class Startup
     {
@@ -64,6 +64,10 @@
             services.AddTransient<ITemplateApplicationService, TemplateApplicationService>();
             services.AddTransient<IProductApplicationService, ProductApplicationService>();
             services.AddTransient<ICategoryApplicationService, CategoryApplicationService>();
+
+            services.AddSingleton<IAmqpApplicationService, AmqpApplicationService>(
+                ctx => new AmqpApplicationService(Environment.GetEnvironmentVariable("DCS_RABBITMQ_URL"))
+             );
 
             services.AddSwaggerGen(c =>
             {
