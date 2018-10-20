@@ -7,7 +7,7 @@
     using Web.Site.Common.Application.Notification;
     using Web.Site.Common.Infrastructure.Persistence;
     using Web.Site.User.Domain.Repository;
-    public class UserAplicationService: IAuthenticationAplicationService
+    public class UserAplicationService: IUserAplicationService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
@@ -43,7 +43,11 @@
                 var  memberRole =  _roleRepository.GetByName(Roles.Member);
 
                 if (memberRole == null)
-                _roleRepository.Create(memberRole);
+                {
+                    memberRole = new Role { Name = Roles.Member };
+
+                    _roleRepository.Create(memberRole);
+                }
 
                 User user = _userCreateAssembler.ToUserEntity(model);
                 user.Role = memberRole;
@@ -86,6 +90,11 @@
             {
                 notification.AddError("Please fill out the password");
                 return notification;
+            }
+
+            if (_userRepository.GetByName(model.UserName) != null)
+            {
+                notification.AddError("UserName already exists");
             }
             return notification;
 

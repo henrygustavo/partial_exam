@@ -2,7 +2,7 @@
 {
     using Web.Site.User.Application.Dto;
 
-    public interface IAuthenticationAplicationService
+    public interface IUserAplicationService
     {
         bool SignUp(UserCreateDTO model);
     }

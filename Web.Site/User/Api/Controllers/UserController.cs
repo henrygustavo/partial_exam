@@ -10,17 +10,17 @@ namespace Web.Site.User.Api.Controllers
     public class UserController: Controller
     {
 
-        IAuthenticationAplicationService _authenticationAplicationService;
-        public UserController(IAuthenticationAplicationService authenticationAplicationService)
+        IUserAplicationService _userAplicationService;
+        public UserController(IUserAplicationService userAplicationService)
         {
-            _authenticationAplicationService = authenticationAplicationService;
+            _userAplicationService = userAplicationService;
         }
 
         [HttpPost]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public IActionResult SignUp([FromBody]UserCreateDTO model)
         {
-            _authenticationAplicationService.SignUp(model);
+            _userAplicationService.SignUp(model);
             return Ok("SignUp was  good");
         }
     }
