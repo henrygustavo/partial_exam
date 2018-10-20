@@ -33,12 +33,16 @@
 
             if (entity == null)
                 entity = new NullProduct();
-            return _productCreateAssembler.FromEntity(entity);
+
+            var resultEntity = _productCreateAssembler.FromEntity(entity);
+
+            return resultEntity;
         }
 
         public List<ProductOutputDto> GetAll()
         {
-            var entities = _productCreateAssembler.FromEntityList(_productRepository.GetAll().ToList());
+            var list = _productRepository.GetAll().ToList();
+            var entities = _productCreateAssembler.FromEntityList(list);
 
             return entities;
         }
@@ -75,10 +79,24 @@
         {
             Notification notification = new Notification();
 
-            if (model == null || string.IsNullOrEmpty(model.Name) || model.CategoryId == 0)
+            if (model == null)
 
             {
                 notification.AddError("Invalid JSON data in request body");
+                return notification;
+            }
+
+            if (string.IsNullOrEmpty(model.Name))
+
+            {
+                notification.AddError("please fill out product name");
+                return notification;
+            }
+
+            if (model.CategoryId == 0)
+
+            {
+                notification.AddError("Invalid category");
                 return notification;
             }
 

@@ -14,10 +14,6 @@
     using Product.Infrastructure.Persistence.NHibernate.Repository;
     using Product.Application.Service;
     using Product.Application.Assembler;
-    using Template.Application.Assembler;
-    using Template.Domain.Repository;
-    using Template.Infrastructure.Persistence.NHibernate.Repository;
-    using Template.Application.Service;
 
     public class Startup
     {
@@ -39,7 +35,6 @@
 
             services.AddSingleton(new ProductCreateAssembler(mapper));
             services.AddSingleton(new CategoryCreateAssembler(mapper));
-            services.AddSingleton(new TemplateCreateAssembler(mapper));
 
             services.AddScoped<IUnitOfWork, UnitOfWorkNHibernate>();
 
@@ -55,13 +50,6 @@
                 return new CategoryNHibernateRepository((UnitOfWorkNHibernate)unitOfWork);
             });
 
-            services.AddTransient<ITemplateRepository, TemplateNHibernateRepository>((ctx) =>
-            {
-                IUnitOfWork unitOfWork = ctx.GetService<IUnitOfWork>();
-                return new TemplateNHibernateRepository((UnitOfWorkNHibernate)unitOfWork);
-            });
-
-            services.AddTransient<ITemplateApplicationService, TemplateApplicationService>();
             services.AddTransient<IProductApplicationService, ProductApplicationService>();
             services.AddTransient<ICategoryApplicationService, CategoryApplicationService>();
 

@@ -17,8 +17,18 @@ CREATE TABLE product (
   CONSTRAINT product_category_id FOREIGN KEY (category_id) REFERENCES category (category_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE template (
-  template_id int(11) NOT NULL AUTO_INCREMENT,
-  name varchar(45) NOT NULL,
-  PRIMARY KEY (template_id)
+CREATE TABLE role (
+  role_id int(11) NOT NULL AUTO_INCREMENT,
+  role_name varchar(45) NOT NULL,
+  PRIMARY KEY (role_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE user (
+  user_id int(11) NOT NULL AUTO_INCREMENT,
+  user_name varchar(45) NOT NULL,
+  password varchar(11) NOT NULL,
+  role_id int(11) NOT NULL,
+  PRIMARY KEY (user_id),
+  CONSTRAINT user_role_id FOREIGN KEY (role_id) REFERENCES role (role_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

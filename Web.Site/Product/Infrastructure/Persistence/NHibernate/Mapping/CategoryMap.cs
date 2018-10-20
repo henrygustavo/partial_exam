@@ -10,7 +10,6 @@
             Id(x => x.Id).Column("category_id");
             Map(x => x.Name).Column("name");
             Map(x => x.Description).Column("description");
-            
         }
     }
 }
