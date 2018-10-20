@@ -29,7 +29,7 @@
                 )
                 .ReverseMap();
 
-            CreateMap<Product, ProductOutputDto>()
+            CreateMap<AbstractProduct, ProductOutputDto>()
             .ForMember(
                 dest => dest.Balance,
                 opts => opts.MapFrom(

@@ -18,7 +18,7 @@
             return _mapper.Map<Product>(productCreateDto);
         }
 
-        public ProductOutputDto FromEntity(Product product)
+        public ProductOutputDto FromEntity(AbstractProduct product)
         {
             return _mapper.Map<ProductOutputDto>(product);
         }

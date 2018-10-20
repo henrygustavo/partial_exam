@@ -29,8 +29,10 @@
 
         public ProductOutputDto Get(int id)
         {
-            var entity = _productRepository.Get(id);
+            AbstractProduct entity = _productRepository.Get(id);
 
+            if (entity == null)
+                entity = new NullProduct();
             return _productCreateAssembler.FromEntity(entity);
         }
 

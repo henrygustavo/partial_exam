@@ -2,17 +2,9 @@
 {
     using Web.Site.Common.Domain.ValueObject;
 
-    public class Product
+    public class Product: AbstractProduct
     {
-        public virtual long Id { get; set; }
-
-        public virtual string  Name { get; set; }
-        public virtual string PictureUrl { get; set; }
-        public virtual string  Description { get; set; }
-        
-        public virtual Money Balance { get; set; }
-
-        public virtual Category Category { get; set; }
+       
         public Product()
         {
         }
