@@ -1,6 +1,6 @@
 # partial_exam
 
-Url:  https://exam-web-api-fantastic-reedbuck.cfapps.io/swagger/index.html
+Swagger:  https://exam-web-api-fantastic-reedbuck.cfapps.io/swagger/index.html
 
 speficitacion pattern : https://exam-web-api-fantastic-reedbuck.cfapps.io/api/products/expensives
 
@@ -14,4 +14,6 @@ https://exam-web-api-fantastic-reedbuck.cfapps.io/api/products/1
 Send messages to rabbitmq:
 POST "https://exam-web-api-fantastic-reedbuck.cfapps.io/api/products"
 
+
+The remaining requirements are distributed through the entire project
 partial_exam
