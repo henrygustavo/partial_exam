@@ -8,7 +8,7 @@
     {
         public UserCreateProfile()
         {
-            CreateMap<UserCreateDTO, User>()
+            CreateMap<UserCreateDto, User>()
                .ForMember(
                    dest => dest.UserName,
                    opts => opts.MapFrom(src => src.UserName)
@@ -17,6 +17,16 @@
                    dest => dest.Password,
                    opts => opts.MapFrom(src => src.Password)
                );
+
+            CreateMap<User, UserOutputDto>()
+              .ForMember(
+                  dest => dest.UserName,
+                  opts => opts.MapFrom(src => src.UserName)
+              )
+              .ForMember(
+                  dest => dest.Role,
+                  opts => opts.MapFrom(src => src.Role != null ? src.Role.Name : string.Empty)
+              );
         }
     }
 }

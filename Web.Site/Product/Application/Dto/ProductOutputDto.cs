@@ -9,9 +9,7 @@
         public string PictureUrl { get; set; }
         public string Description { get; set; }
         public decimal Balance { get; set; }
-
-        public int CategoryId { get; set; }
-
-        public Currency Currency { get; set; }
+        public string Category { get; set; }
+        public string Currency { get; set; }
     }
 }

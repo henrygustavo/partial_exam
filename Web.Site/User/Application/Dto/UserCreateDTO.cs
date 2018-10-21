@@ -1,6 +1,6 @@
 ﻿namespace Web.Site.User.Application.Dto
 {
-    public class UserCreateDTO
+    public class UserCreateDto
     {
         public string  UserName { get; set; }
 

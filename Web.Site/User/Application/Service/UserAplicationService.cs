@@ -7,6 +7,9 @@
     using Web.Site.Common.Application.Notification;
     using Web.Site.Common.Infrastructure.Persistence;
     using Web.Site.User.Domain.Repository;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class UserAplicationService: IUserAplicationService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -26,7 +29,15 @@
 
         }
 
-        public bool SignUp(UserCreateDTO model)
+        public List<UserOutputDto> GetAll()
+        {
+            var list = _userRepository.GetAll().ToList();
+            var entities = _userCreateAssembler.FromEntityList(list);
+
+            return entities;
+        }
+
+        public bool SignUp(UserCreateDto model)
         {
 
             Notification notification = ValidateModel(model);
@@ -67,7 +78,7 @@
 
         }
 
-        private Notification ValidateModel(UserCreateDTO model)
+        private Notification ValidateModel(UserCreateDto model)
         {
             Notification notification = new Notification();
 

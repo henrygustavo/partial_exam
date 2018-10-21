@@ -1,5 +1,5 @@
 ﻿INSERT INTO category(name, description) 
-VALUES ('cloth', 'cloth'),('computers', 'computers');
+VALUES ('computers', 'computers');
 
 
 INSERT INTO product(name,picture_url, description,price,currency,category_id) 

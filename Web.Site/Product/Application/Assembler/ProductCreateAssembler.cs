@@ -23,7 +23,7 @@
             return _mapper.Map<ProductOutputDto>(product);
         }
 
-        public List<ProductOutputDto> FromEntityList(List<Product> productList)
+        public List<ProductOutputDto> FromEntityList(List<AbstractProduct> productList)
         {
             return _mapper.Map<List<ProductOutputDto>>(productList);
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
 using Web.Site.User.Application.Dto;
 using Web.Site.User.Application.Service;
@@ -6,7 +7,7 @@ using Web.Site.User.Application.Service;
 namespace Web.Site.User.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/auth")]
+    [Route("api/users")]
     public class UserController: Controller
     {
 
@@ -16,12 +17,19 @@ namespace Web.Site.User.Api.Controllers
             _userAplicationService = userAplicationService;
         }
 
-        [HttpPost]
+        [HttpGet]
+        [ProducesResponseType(typeof(List<UserOutputDto>), (int)HttpStatusCode.OK)]
+        public IActionResult GetAll()
+        {
+            return Ok(_userAplicationService.GetAll());
+        }
+
+        [HttpPost("auth")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
-        public IActionResult SignUp([FromBody]UserCreateDTO model)
+        public IActionResult SignUp([FromBody]UserCreateDto model)
         {
             _userAplicationService.SignUp(model);
-            return Ok("SignUp was  good");
+            return Ok("SignUp was good");
         }
     }
 }

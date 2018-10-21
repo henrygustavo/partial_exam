@@ -28,6 +28,12 @@
                 )
             )
             .ForMember(
+                dest => dest.Category,
+                opts => opts.MapFrom(
+                    src => src.Category != null ? src.Category.Name : string.Empty
+                )
+            )
+            .ForMember(
                 dest => dest.Currency,
                 opts => opts.MapFrom(
                     src => src.Balance.Currency.ToString()

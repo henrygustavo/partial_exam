@@ -41,7 +41,7 @@
 
         public List<ProductOutputDto> GetAll()
         {
-            var list = _productRepository.GetAll().ToList();
+            var list = _productRepository.GetAll().ToList<AbstractProduct>();
             var entities = _productCreateAssembler.FromEntityList(list);
 
             return entities;
@@ -110,7 +110,8 @@
 
               specification = specification.And(new ProductWithExpensivePriceSpecification());
 
-            var entities = _productCreateAssembler.FromEntityList(_productRepository.GetFilteredList(specification).ToList());
+            var entities = _productCreateAssembler.FromEntityList(
+                _productRepository.GetFilteredList(specification).ToList<AbstractProduct>());
 
             return entities;
         }

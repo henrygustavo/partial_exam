@@ -15,7 +15,7 @@
                 m.Map(x => x.Amount, "price");
                 m.Map(x => x.Currency, "currency");
             });
-            References(x => x.Category).LazyLoad();
+            References(x => x.Category).Not.LazyLoad();
 
         }
     }
