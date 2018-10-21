@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Net;
-using Web.Site.User.Application.Dto;
-using Web.Site.User.Application.Service;
-
-namespace Web.Site.User.Api.Controllers
+﻿namespace Web.Site.User.Api.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
+    using System.Net;
+    using Web.Site.User.Application.Dto;
+    using Web.Site.User.Application.Service;
+
     [Produces("application/json")]
     [Route("api/users")]
     public class UserController: Controller

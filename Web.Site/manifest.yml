@@ -1,0 +1,8 @@
+﻿---
+applications:
+- name: exam-web-api
+  random-route: true
+  memory: 512M
+  buildpack: dotnet_core_buildpack
+  env:
+    ASPNETCORE_ENVIRONMENT: Production
